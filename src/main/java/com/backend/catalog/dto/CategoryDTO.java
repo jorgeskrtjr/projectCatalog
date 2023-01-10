@@ -1,33 +1,31 @@
-package com.backend.catalog.entities;
+package com.backend.catalog.dto;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.backend.catalog.entities.Category;
 
-@Entity
-@Table(name = "tb_category")
-public class Category implements Serializable {
-    
+public class CategoryDTO implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-    
-	public Category() {
-		
+
+	public CategoryDTO() {
+
 	}
-	
-	public Category(Long id, String name) {
+
+	public CategoryDTO(Long id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
+	}
+	
+	public CategoryDTO(Category entity) {
+		super();
+		this.id = entity.getId();
+		this.name = entity.getName();
 	}
 
 	public Long getId() {
@@ -59,7 +57,7 @@ public class Category implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Category other = (Category) obj;
+		CategoryDTO other = (CategoryDTO) obj;
 		return Objects.equals(id, other.id) && Objects.equals(name, other.name);
 	}
 
